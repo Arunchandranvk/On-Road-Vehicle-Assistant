@@ -1,0 +1,63 @@
+{% extends 'user_home.html' %}
+{% block user %}
+<style>
+    body{
+        background: rgb(241, 239, 240);
+background: radial-gradient(circle, rgb(248, 247, 247) 0%, rgb(76, 76, 77) 100%);
+    }
+</style>
+    <div class="container mt-5">
+        <div class="text-center my-3 text-white" style="font-family: 'Times New Roman', Times, serif;font-weight: bolder;">
+            <h1>APPROVED MECHANICS</h1>
+        </div>
+    <!-- <ul>
+        {% for mechanic in mechanics %}
+        <li>{{ mechanic.name }}</li>
+        <form action="{%url 'create_req' mechanic.id %}" method="post">
+            {%csrf_token%}
+            <button type="submit">Request</button>
+        </form>
+        {% endfor %}
+    </ul> -->
+
+
+        <div class="row">
+            {% for mechanic in mechanics %}
+  
+             <div class="col-sm-6 mb-3 mb-sm-0 g-3  ">
+             
+          <div class="col-lg-3">
+            <img src="{{ mechanic.profile_pic.url }}" class="card-img-top ml-1" style="margin-top: 20%;" alt="..." height="500px" width="120px">
+          </div>
+          <div class="col" >
+            <div class="card-body">
+              <h2 class="card-title" style="font-family: 'Courier New', Courier, monospace;font-weight: bold;">{{mechanic.name}}</h2>
+          
+            </div>
+            <ul class="list-group list-group-flush" style="border-radius: 0.75rem;">
+              <li class="list-group-item mr-2 jumbotron" >Location <span style="margin-left: 100px;" >:</span>&nbsp;&nbsp;{{mechanic.location}}</li>
+    
+              <li class="list-group-item mt-2 mr-2">Phone <span style="margin-left: 115px;">:</span>&nbsp;&nbsp;{{mechanic.phone}}</li>
+              <li class="list-group-item mt-2 mr-2">Skills <span style="margin-left: 125px;">:</span>&nbsp;&nbsp;{{mechanic.skills}}</li>
+              <li class="list-group-item mt-2 mr-2">Experience <span style="margin-left: 85px;">:</span>&nbsp;&nbsp;{{mechanic.experience}}</li>
+             
+            </ul>
+
+             <div class="row mt-2 mr-1 ml-1 mb-2">
+                        <div class="col-4"></div>
+              <div class="col">  <form action="{%url 'create_req' mechanic.id %}"   >
+                {% csrf_token %}
+                <button  type="submit" class="btn btn-info text-white">Send Request</button>
+                
+            </form>
+                </div>
+             <div class="col-1"></div>
+            </div>
+            
+          </div>
+          </div>
+      
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

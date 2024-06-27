@@ -1,0 +1,19 @@
+{% extends 'admin_home.html' %}
+{% block dashboard %}
+                <div class="container">
+                    <form class="form-control w-50 h-45 shadow" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="text-center">
+                            <span class="h2 fw-bold">ADD LOCATION</span>
+                        </div>
+                        <div class="mt-4 mb-4">
+                            <input class="form-control" placeholder="Enter Location" type="text" name="name" id="">
+                        </div>
+                        <div class="text-center mb-3 mt-3">
+                            <button class="btn btn-primary mt-3">Add</button>
+                            <button class="btn btn-danger mt-3">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+          
+ {% endblock   %}
