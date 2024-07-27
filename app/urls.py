@@ -9,6 +9,7 @@ path("register/admin", AdminRegistrationView.as_view(), name="admin-registration
 path('login/admin', AdminLoginView.as_view(), name='admin-login'),
 path('add/locations', AddLocationView.as_view(), name="add-locations"),
 path('approval/<int:pk>', approve_mechanic, name="approve"),
+path('location-delete/<int:pk>', locationdelete, name="locdel"),
 
 # Mechanic URLs
 path("mechanic/home", MechnaicHomeView.as_view(), name="mechanic_home"),
@@ -39,6 +40,7 @@ path('reservations/', UserReservationListView.as_view(), name='user_reservation_
 path('update_reservation/<int:pk>/',update_reservation, name='update_reservation'),
 path('userpayment/<int:pk>/',UserPaymentDetailsView.as_view(), name='user_payment'),
 path('userpaymentdetails/<int:pk>/',UserPaymentView.as_view(), name='payment_details'),
+path('mechanichistory/<int:pk>/',MechanicHistory.as_view(), name='mechistory'),
 
 #car renter URLS
 path("car/home", CarRenterHomeView.as_view(), name="car_home"),

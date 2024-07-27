@@ -30,14 +30,14 @@ background: radial-gradient(circle, rgb(248, 247, 247) 0%, rgb(76, 76, 77) 100%)
                         <textarea name="discription" id="discription" class="form-control" placeholder="Description" rows="6"></textarea>
                     </div>
                  </div>
-                 <div class="row mt-4">
+                 {% comment %} <div class="row mt-4">
                     <div class="col-2 mt-2">
                         <label for="">Phone :</label>
                     </div>
                     <div class="col">
                         <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
                     </div>
-                 </div>
+                 </div> {% endcomment %}
                  <div class="row mt-4">
                     <div class="col-2 mt-2">
                         <label for="">Location :</label>
@@ -67,6 +67,6 @@ background: radial-gradient(circle, rgb(248, 247, 247) 0%, rgb(76, 76, 77) 100%)
                 alert('{{ message }}');
             {% endfor %}
         {% endif %}
-    });
-  </script>
+    });  
+</script>
 {% endblock %}

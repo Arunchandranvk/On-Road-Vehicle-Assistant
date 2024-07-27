@@ -168,17 +168,13 @@
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background: linear-gradient(to left, #000, #373535d8);">
+    <nav class="navbar navbar-expand-lg navbar-dark p-1" style="background: linear-gradient(to left, #000, #373535d8);">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'user_home' %}">
-                <img src="{% static 'images/logo.png' %}" alt="logo" srcset="" width="150">
+                <img src="{% static 'images/logo.png' %}" alt="logo" srcset="" width="100">
             </a>
           <a class="navbar-brand" href="{% url 'user_home' %}">  <h5 class="mt-1 text-white fs-1 fw-bolder" style="font-style: italic;color: #666;font-family: 'Times New Roman', Times, serif;">  ORVBA</h5></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 4em;">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -194,8 +190,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white fw-bolder fs-4" aria-current="page"  id="heading"
-                            href="{%url 'available_cars'%}">Rent
-                            Car</a>
+                            href="{%url 'available_cars'%}">Rent Car</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white fw-bolder fs-4" aria-current="page" id="heading"
@@ -203,7 +198,7 @@
                             </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle text-white fw-bolder fs-4 btn btn-outline-info"  aria-current="page" style="padding: 5px 40px;"
+                        <a class="nav-link active dropdown-toggle text-white fw-bolder fs-4 btn btn-outline-info"  aria-current="page" style="padding: 5px 30px;"
                             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Profile
                         </a>

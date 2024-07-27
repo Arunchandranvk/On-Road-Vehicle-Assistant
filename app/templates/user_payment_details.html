@@ -31,10 +31,8 @@
 
 <body>
  <div class="container">
-        <div class="row justify-content-center" >
-            <div class="text-center my-3">
-                <span class="h1  fw-bold">MECH PROFILE VIEW</span>
-            </div>
+        <div class="row justify-content-center mt-4" >
+            
             <div class="card " style="width: 1500px;height: fit-content;">
             <div class="row mb-3">
                 <div class="col "  style="padding: 80px 60px;">
@@ -52,10 +50,10 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"> Request : {{data.req.discription}}</li>
                         <li class="list-group-item">Account Holder :{{data.acholdername}}</li>
-                        <li class="list-group-item">Account No : {{data.accno}}</li>
+                        <li class="list-group-item">Card No : {{data.accno}}</li>
                         <li class="list-group-item">CVV : {{data.cvv}}</li>
                         <li class="list-group-item">Experience : {{data.exp}} Years</li>
-                        <li class="list-group-item">Amount : {{data.amount}} </li>
+                        <li class="list-group-item">Amount : ${{data.amount}}  </li>
                     </ul>
                 </div>
             </div>

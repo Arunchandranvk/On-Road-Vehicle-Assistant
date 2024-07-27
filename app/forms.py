@@ -164,7 +164,7 @@ class UserProfileForm(forms.ModelForm):
 class ReqToMechanicForm(forms.ModelForm):
     class Meta:
         model = ReqToMechanic
-        fields = ['discription', 'phone', 'location']
+        fields = ['discription', 'location']
 
     
 class FeedBackForm(forms.ModelForm):

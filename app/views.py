@@ -145,7 +145,16 @@ class AddLocationView(CreateView):
     form_class=AddLocationForm
     template_name="add_location.html"
     success_url=reverse_lazy('admin-home')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['loc']=Location.objects.all()
+        return context
 
+def locationdelete(request,**kwargs):
+    id=kwargs.get('pk')
+    loc=Location.objects.get(id=id)
+    loc.delete()
+    return redirect('add-locations')
 
 class MechanicProfileAddView(CreateView):
     model = MechanicProfile
@@ -290,13 +299,21 @@ class UserProfileUpdateView(UpdateView):
     def get_object(self, queryset=None):
         return UserProfile.objects.get(user=self.request.user)
     
-class ApprovedMechanicListView(ListView):
-    model = MechanicProfile
+class ApprovedMechanicListView(TemplateView):
     template_name = 'approved_mechanic.html'
-    context_object_name = 'mechanics'
-
-    def get_queryset(self):
-        return MechanicProfile.objects.filter(status='approved')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search_query = self.request.GET.get('search', '')
+        
+        if search_query:
+            context['mechanics'] = MechanicProfile.objects.filter(
+                status='approved',
+                location__name__icontains=search_query  
+            )
+        else:
+            context['mechanics'] = MechanicProfile.objects.filter(status='approved')
+        context['search_query'] = search_query        
+        return context
 
 class ReqToMechanicCreateView(CreateView):
     model = ReqToMechanic
@@ -314,6 +331,7 @@ class ReqToMechanicCreateView(CreateView):
             form.instance.mechanic = mechanic
             # form.instance.user = self.request.user.userprofile
             form.instance.user = self.request.user.user_profile
+            form.instance.phone=self.request.user.user_profile.phone
             return super().form_valid(form)
         except:
             messages.error(self.request, "User has no User Profile, Complete Profile!!!.")
@@ -738,14 +756,16 @@ class UserPaymentDetailsView(CreateView):
 
     def get_context_data(self, **kwargs) :
         context= super().get_context_data(**kwargs)
-        id=self.kwargs.get('pk')
-        print(id)
-        bill = ReqToMechanic.objects.get(id=id)
-        print(bill.id)
-        context['bill']=Bill.objects.get(req=bill)
         try:
-             context['userpayment']=UserPayment.objects.get(req=bill.id,customer=self.request.user.id)
-        except:
+            id=self.kwargs.get('pk')
+            print(id)
+            bill = ReqToMechanic.objects.get(id=id)
+            context['req']=ReqToMechanic.objects.get(id=id)
+            print(bill)
+            context['bill']=Bill.objects.get(req=bill)
+        
+            context['userpayment']=UserPayment.objects.filter(req=bill.id,customer=self.request.user.id)
+        except Bill.DoesNotExist:
             pass
         return context
 
@@ -770,3 +790,16 @@ class UserPaymentView(TemplateView):
         bill=ReqToMechanic.objects.get(id=id)
         context['data']=UserPayment.objects.get(req=bill)
         return context
+    
+    
+
+class MechanicHistory(TemplateView):
+    template_name='mechanic_history.html'
+    def get_context_data(self, **kwargs):
+        context =super().get_context_data(**kwargs)
+        id=self.kwargs.get('pk')
+        mech=MechanicProfile.objects.get(id=id)
+        context['history']=ReqToMechanic.objects.filter(mechanic=mech.id,status="completed")
+        return context
+    
+    

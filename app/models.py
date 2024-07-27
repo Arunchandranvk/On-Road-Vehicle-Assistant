@@ -90,7 +90,7 @@ class UserPayment(models.Model):
     acholdername=models.CharField(max_length=100)
     accno=models.PositiveBigIntegerField()
     cvv=models.IntegerField()
-    exp=models.DateField()
+    exp=models.CharField(max_length=100)
     amount=models.PositiveBigIntegerField()
     
     def __str__(self):

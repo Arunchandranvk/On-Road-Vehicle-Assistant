@@ -1,7 +1,16 @@
 {% extends 'admin_home.html' %}
 {% block dashboard %}
+<style>
+     .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
+            padding: 30px;
+        }
+</style>
                 <div class="container">
-                    <form class="form-control w-50 h-45 shadow" action="" method="post" enctype="multipart/form-data">
+                    <form class="form-control   shadow" action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="text-center">
                             <span class="h2 fw-bold">ADD LOCATION</span>
@@ -13,7 +22,16 @@
                             <button class="btn btn-primary mt-3">Add</button>
                             <button class="btn btn-danger mt-3">Cancel</button>
                         </div>
-                    </form>
+                    </form> 
+                  
                 </div>
-          
+                <div class="row " style="padding: 20px;overflow: scroll;height: 390px;">
+                    {% for location in loc %}
+                    
+                            <div class="card mb-1" style="padding: 20px;">
+                                <span>{{forloop.counter}} . {{location.name}}<a href="{% url 'locdel' location.id %}" class="btn btn-danger" style="float: right;">Delete</a></span>
+                            </div>
+                          
+                    {% endfor %}
+                </div>
  {% endblock   %}
